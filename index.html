@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MinangCulture App</title>
+
+  <style>
+
+    /* Background */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      background-image:
+        linear-gradient(rgba(255,255,255,0.88), rgba(255,255,255,0.88)),
+        url('https://upload.wikimedia.org/wikipedia/commons/5/5d/Rumah_Gadang_Pagaruyung.jpg');
+
+      background-size: cover;
+      background-position: center;
+      z-index: -2;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Ornamen kiri */
+    body::after {
+      content: "";
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 80px;
+      height: 100%;
+
+      background:
+        linear-gradient(
+          to bottom,
+          #7a1f1f,
+          #a61b1b,
+          #d62828,
+          #7a1f1f
+        );
+
+      clip-path: polygon(
+        0 0,
+        100% 5%,
+        70% 15%,
+        100% 25%,
+        70% 35%,
+        100% 45%,
+        70% 55%,
+        100% 65%,
+        70% 75%,
+        100% 85%,
+        70% 95%,
+        0 100%
+      );
+
+      opacity: 0.9;
+      z-index: -1;
+    }
+
+    /* Ornamen kanan */
+    .right-decoration {
+      position: fixed;
+      right: 0;
+      top: 0;
+      width: 80px;
+      height: 100%;
+
+      background:
+        linear-gradient(
+          to bottom,
+          #7a1f1f,
+          #a61b1b,
+          #d62828,
+          #7a1f1f
+        );
+
+      clip-path: polygon(
+        100% 0,
+        0 5%,
+        30% 15%,
+        0 25%,
+        30% 35%,
+        0 45%,
+        30% 55%,
+        0 65%,
+        30% 75%,
+        0 85%,
+        30% 95%,
+        100% 100%
+      );
+
+      opacity: 0.9;
+      z-index: -1;
+    }
+
+    /* Container */
+    .container {
+      background: rgba(255,255,255,0.93);
+      width: 92%;
+      max-width: 430px;
+      padding: 28px;
+      border-radius: 32px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+      overflow: hidden;
+    }
+
+    /* Header */
+    .app-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+      color: #7a1f1f;
+    }
+
+    .badge {
+      background: #7a1f1f;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+    }
+
+    .quote {
+      font-style: italic;
+      color: #7a1f1f;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    /* Card */
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 24px;
+      margin-top: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      text-align: center;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      color: #7a1f1f;
+      font-size: 28px;
+    }
+
+    h2 {
+      color: #7a1f1f;
+    }
+
+    p {
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* Tombol */
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 12px;
+      border: none;
+      border-radius: 16px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 6px 15px rgba(122,31,31,0.2);
+    }
+
+    button:hover {
+      transform: scale(1.04);
+      opacity: 0.95;
+    }
+
+    .yes {
+      background: #7a1f1f;
+      color: white;
+    }
+
+    .no {
+      background: #ccc;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Gambar */
+    .image-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .image-grid img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 18px;
+      transition: 0.3s;
+    }
+
+    .image-grid img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 18px rgba(122,31,31,0.3);
+    }
+
+    ul {
+      text-align: left;
+      line-height: 1.8;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 12px;
+      color: #666;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="right-decoration"></div>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="app-header">
+    <div class="logo">MinangCulture App</div>
+    <div class="badge">Interactive</div>
+  </div>
+
+  <div class="quote">
+    “Adat basandi syarak, syarak basandi Kitabullah”
+  </div>
+
+  <!-- PAGE 1 -->
+  <div id="page1">
+
+    <div class="card">
+
+      <h1>
+        Pelestarian Budaya Minangkabau melalui Teknologi Digital
+      </h1>
+
+      <div class="image-grid">
+        <img src="lomba/minang.jpg" alt="Baju Adat Minang">
+        <img src="lomba/tari.png" alt="Tari Piring">
+        <img src="lomba/jam.avif" alt="Jam Gadang">
+        <img src="lomba/rumahgadang.avif" alt="Rumah Gadang">
+      </div>
+
+      <p style="font-size:24px;">❖ ❖ ❖</p>
+
+      <p>
+        Banyak generasi muda mulai melupakan budaya daerah.
+        Apakah kamu ingin ikut melestarikan budaya Minangkabau melalui media digital?
+      </p>
+
+      <button class="yes" onclick="showPage('page2')">
+        Iya
+      </button>
+
+      <button class="no" onclick="showPage('page3')">
+        Tidak
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- PAGE 2 -->
+  <div id="page2" class="hidden">
+
+    <div class="card">
+
+      <h1>✨ Budaya Tetap Hidup</h1>
+
+      <p>
+        Kamu memilih untuk melestarikan budaya.
+        Media sosial dan teknologi digital dapat digunakan untuk memperkenalkan bahasa,
+        pakaian adat, musik tradisional, dan budaya Minangkabau kepada generasi muda.
+      </p>
+
+      <div class="image-grid">
+        <img src="lomba/rumahgadang.avif" alt="Rumah Gadang">
+        <img src="lomba/minang.jpg" alt="Budaya Minang">
+      </div>
+
+      <p>
+        <b>“Alam takambang jadi guru”</b>
+      </p>
+
+      <p>
+        Rumah Gadang merupakan simbol budaya Minangkabau yang mencerminkan
+        kebersamaan dan adat istiadat.
+      </p>
+
+    </div>
+
+    <!-- Budaya Minang -->
+    <div class="card">
+
+      <h2>🏛️ Budaya Minangkabau</h2>
+
+      <ul>
+        <li>Rumah Gadang</li>
+        <li>Tari Piring</li>
+        <li>Randai</li>
+        <li>Saluang</li>
+        <li>Bahasa Minangkabau</li>
+        <li>Petatah Petitih</li>
+      </ul>
+
+    </div>
+
+    <!-- Bahasa -->
+    <div class="card">
+
+      <h2>📖 Belajar Bahasa Minangkabau</h2>
+
+      <p>
+        <b>Apo kaba?</b> → Apa kabar?<br>
+        <b>Denai</b> → Saya<br>
+        <b>Urang awak</b> → Orang Minangkabau<br>
+        <b>Waang</b> → Kamu
+      </p>
+
+    </div>
+
+    <!-- Petatah Petitih -->
+    <div class="card">
+
+      <h2>🗣️ Petatah Petitih Minangkabau</h2>
+
+      <p>
+        <b>“Dima bumi dipijak, disinan langik dijunjuang”</b>
+      </p>
+
+      <p>
+        Artinya:
+        Di mana kita berada,
+        di situ adat dan aturan harus dihormati.
+      </p>
+
+      <p>
+        <b>“Alam takambang jadi guru”</b>
+      </p>
+
+      <p>
+        Artinya:
+        Alam dan kehidupan dapat menjadi sumber pembelajaran.
+      </p>
+
+    </div>
+
+    <!-- Pelestarian -->
+    <div class="card">
+
+      <h2>🎵 Pelestarian Budaya Digital</h2>
+
+      <p>
+        Generasi muda dapat melestarikan budaya Minangkabau melalui:
+      </p>
+
+      <ul>
+        <li>Video kreatif budaya</li>
+        <li>Konten media sosial</li>
+        <li>Musik tradisional digital</li>
+        <li>Pembelajaran bahasa daerah</li>
+      </ul>
+
+      <p>
+        Budaya Minangkabau dapat diperkenalkan kembali kepada generasi muda
+        melalui TikTok, Instagram, dan YouTube.
+      </p>
+
+    </div>
+
+    <!-- Konten -->
+    <div class="card">
+
+      <h2>📱 Cara Membuat Konten Budaya</h2>
+
+      <p>
+        Generasi muda dapat mempromosikan budaya Minangkabau melalui media sosial dengan cara:
+      </p>
+
+      <ul>
+        <li>Membuat video tari atau pakaian adat Minang</li>
+        <li>Menggunakan musik tradisional pada video</li>
+        <li>Membagikan petatah petitih Minangkabau</li>
+        <li>Mengenalkan bahasa Minang melalui video pendek</li>
+        <li>Mengunggah foto Rumah Gadang dan tradisi daerah</li>
+        <li>Membuat konten edukasi budaya di TikTok, Instagram, dan YouTube</li>
+      </ul>
+
+      <h2>Contoh Konten</h2>
+
+      <div class="image-grid">
+        <img src="lomba/rara.jpeg" alt="Konten Budaya">
+        <img src="lomba/zacky.jpeg" alt="Konten Budaya">
+      </div>
+
+    </div>
+
+    <button class="yes" onclick="showPage('page1')">
+      Kembali
+    </button>
+
+  </div>
+
+  <!-- PAGE 3 -->
+  <div id="page3" class="hidden">
+
+    <div class="card">
+
+      <h1>⚠️ Budaya Mulai Dilupakan</h1>
+
+      <div class="image-grid">
+        <img src="lomba/candu.avif" alt="Kecanduan Gadget">
+        <img src="lomba/kecanduan.avif" alt="Kecanduan Media Sosial">
+      </div>
+
+      <p>
+        Jika budaya tidak diperkenalkan kepada generasi muda,
+        maka tradisi daerah perlahan akan hilang.
+      </p>
+
+      <p>
+        Karena itu, teknologi digital dapat menjadi sarana penting
+        untuk menjaga budaya tetap dikenal.
+      </p>
+
+      <button class="yes" onclick="showPage('page1')">
+        Coba Lagi
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    MinangCulture App © 2026
+  </div>
+
+</div>
+
+<!-- SCRIPT -->
+<script>
+
+  function showPage(pageId) {
+
+    document.getElementById('page1')
+      .classList.add('hidden');
+
+    document.getElementById('page2')
+      .classList.add('hidden');
+
+    document.getElementById('page3')
+      .classList.add('hidden');
+
+    document.getElementById(pageId)
+      .classList.remove('hidden');
+  }
+
+</script>
+
+<!-- Musik -->
+<audio autoplay loop>
+  <source
+    src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_4a0dcb5c64.mp3?filename=traditional-gamelan-music-110997.mp3"
+    type="audio/mpeg">
+</audio>
+
+</body>
+</html>
